@@ -9,6 +9,84 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final Map<String, Map<String, String>> courseData = {
+    //อารีนา กูโน
+    "เคมีเทคโนโลยีและนวัตกรรม": {
+      "leader": "อารีนา กูโน",
+      "image": "assets/images/areena.png",
+    },
+    //เปาซียะ บาเหะ
+    "ฟิสิกส์อุตสาหกรรม": {
+      "leader": "เปาซียะ บาเหะ",
+      "image": "assets/images/paoseeya.png",
+    },
+    //มูฮัมหมัดคอลีดี กาซอ
+    "ชีววิทยาเทคโนโลยีและนวัตกรรม": {
+      "leader": "มูฮัมหมัดคอลีดี กาซอ",
+      "image": "assets/images/coleedee.png",
+    },
+    //มูฮัมหมัดคอลีดี กาซอ
+    "จุลชีววิทยาทางการแพทย์และอุตสาหกรรม": {
+      "leader": "มูฮัมหมัดคอลีดี กาซอ",
+      "image": "assets/images/coleedee.png",
+    },
+    //จิรวรรณ แก้วมรกฎ
+    "วิทยาการคอมพิวเตอร์และเทคโนโลยีดิจิทัล": {
+      "leader": "จิรวรรณ แก้วมรกฎ",
+      "image": "assets/images/jirawan.png",
+    },
+    //ซามีลา หยีสาแม็ง
+    "เทคโนโลยีสารสนเทศ": {
+      "leader": "ซามีลา หยีสาแม็ง",
+      "image": "assets/images/sameela.png",
+    },
+    //อารีนา กูโน
+    "เทคโนโลยีและนวัตกรรมการเกษตร": {
+      "leader": "อารีนา กูโน",
+      "image": "assets/images/areena.png",
+    },
+    "สัตวศาสตร์และปศุสัตว์": {
+      "leader": "ไม่มีข้อมูล",
+      "image": "assets/images/logo2.png",
+    },
+    //จิรวรรณ แก้วมรกฎ
+    "พลังงานทดแทน": {
+      "leader": "จิรวรรณ แก้วมรกฎ",
+      "image": "assets/images/jirawan.png",
+    },
+    "วิทยาศาสตร์เครื่องสำอางและความงาม": {
+      "leader": "ไม่มีข้อมูล",
+      "image": "assets/images/logo.png",
+    },
+    //เปาซียะ บาเหะ
+    "การประกอบอาหารฮาลาล": {
+      "leader": "เปาซียะ บาเหะ",
+      "image": "assets/images/paoseeya.png",
+    },
+    //จิรวรรณ แก้วมรกฎ
+    "วิทยาศาสตร์และเทคโนโลยีการอาหาร": {
+      "leader": "จิรวรรณ แก้วมรกฎ",
+      "image": "assets/images/jirawan.png",
+    },
+    //เปาซียะ บาเหะ
+    "คณิตศาสตร์": {
+      "leader": "เปาซียะ บาเหะ",
+      "image": "assets/images/paoseeya.png",
+    },
+    //ซามีลา หยีสาแม็ง
+    "วิทยาศาสตร์ทั่วไป": {
+      "leader": "ซามีลา หยีสาแม็ง",
+      "image": "assets/images/sameela.png",
+    },
+    //อารีนา กูโน
+    "คอมพิวเตอร์ศึกษา": {
+      "leader": "อารีนา กูโน",
+      "image": "assets/images/areena.png",
+    },
+  };
+
+  String? selectedCourse;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,13 +96,13 @@ class _LoginScreenState extends State<LoginScreen> {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("นายพัทธนันท์ บุญปาน",
+              Text("ศ.ดร.พัทธนันท์ บุญปาน",
                   style: TextStyle(
-                    fontFamily: 'Kanit', 
+                    fontFamily: 'Kanit',
                     fontSize: 20,
                     color: Color.fromRGBO(255, 255, 255, 1),
                   )),
-              Text("เจ้าหน้าที่",
+              Text("อาจารย์",
                   style: TextStyle(
                     fontFamily: 'Kanit',
                     fontSize: 20,
@@ -65,6 +143,89 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontFamily: 'Kanit',
                 color: const Color.fromARGB(255, 0, 0, 0),
               ),
+            ),
+          ),
+
+          //dropdown เลือกหลักสูตร
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 10, color: Colors.black26, offset: Offset(0, 6))
+              ],
+              color: Colors.white, // กำหนดสีพื้นหลังเป็นสีขาว
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: DropdownButton<String>(
+              isExpanded: true,
+              value: selectedCourse,
+              hint: Text(
+                "เลือกหลักสูตร",
+                style: TextStyle(fontFamily: 'Kanit'),
+              ),
+              items: courseData.keys.map((course) {
+                return DropdownMenuItem<String>(
+                  value: course,
+                  child: Text(course),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedCourse = value;
+                });
+              },
+            ),
+          ),
+          SizedBox(height: 20),
+
+          //เงื่อนไขการกดเลือก dropdown
+          if (selectedCourse != null) ...[
+            SizedBox(height: 20),
+            Center(
+              child: Image.asset(
+                courseData[selectedCourse]!['image']!,
+                height: 250,
+                width: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "เจ้าหน้าที่: ${courseData[selectedCourse]!['leader']}",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Kanit'),
+              ),
+            ),
+          ] else
+            Text(
+              "ยังไม่ได้เลือกหลักสูตร",
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+
+          //ปุ่มขอรับบริการ
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'ขอรับบริการ',
+                    style: TextStyle(
+                      color: Color.fromRGBO(12, 103, 160, 1),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Kanit'),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
