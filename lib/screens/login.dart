@@ -4,11 +4,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  int myIndex = 0;
   final Map<String, Map<String, String>> courseData = {
     //อารีนา กูโน
     "เคมีเทคโนโลยีและนวัตกรรม": {
@@ -45,9 +49,10 @@ class _LoginScreenState extends State<LoginScreen> {
       "leader": "อารีนา กูโน",
       "image": "assets/images/areena.png",
     },
+    //นาบิลละห์ สาแม
     "สัตวศาสตร์และปศุสัตว์": {
-      "leader": "ไม่มีข้อมูล",
-      "image": "assets/images/logo2.png",
+      "leader": "นาบิลละห์ สาแม",
+      "image": "assets/images/nabilla.png",
     },
     //จิรวรรณ แก้วมรกฎ
     "พลังงานทดแทน": {
@@ -83,6 +88,26 @@ class _LoginScreenState extends State<LoginScreen> {
       "leader": "อารีนา กูโน",
       "image": "assets/images/areena.png",
     },
+    //ฟิรดาว เจ๊ะแต
+    "ป.โท สาขาวิชาการสอนวิทยาศาสตร์ คณิตศาสตร์ และคอมพิวเตอร์": {
+      "leader": "ฟิรดาว เจ๊ะแต",
+      "image": "assets/images/firdaw.png",
+    },
+    //ฟิรดาว เจ๊ะแต
+    "ป.เอก สาขาวิชาการสอนวิทยาศาสตร์ คณิตศาสตร์ และคอมพิวเตอร์": {
+      "leader": "ฟิรดาว เจ๊ะแต",
+      "image": "assets/images/firdaw.png",
+    },
+    //ฟิรดาว เจ๊ะแต
+    "ป.โท สาขาวิชาการจัดการทรัพยากรธรรมชาติและสิ่งแวดล้อม": {
+      "leader": "ฟิรดาว เจ๊ะแต",
+      "image": "assets/images/firdaw.png",
+    },
+    //ฟิรดาว เจ๊ะแต
+    "ป.เอก สาขาวิชาการจัดการทรัพยากรธรรมชาติและสิ่งแวดล้อม": {
+      "leader": "ฟิรดาว เจ๊ะแต",
+      "image": "assets/images/firdaw.png",
+    },
   };
 
   String? selectedCourse;
@@ -100,13 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontFamily: 'Kanit',
                     fontSize: 20,
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: Color.fromRGBO(0, 0, 0, 1),
                   )),
               Text("อาจารย์",
                   style: TextStyle(
                     fontFamily: 'Kanit',
                     fontSize: 20,
-                    color: Color.fromRGBO(255, 255, 255, 1),
+                    color: Color.fromRGBO(0, 0, 0, 1),
                   )),
             ],
           ),
@@ -131,6 +156,29 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+
+      //bottomNavigationBar
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              myIndex = index;
+            });
+          },
+          currentIndex: myIndex,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "หน้าหลัก",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.menu),
+              label: "เมนู",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: "ตั้งค่า",
+            ),
+          ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -191,6 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(height: 30),
+            Container(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -219,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text(
                     'ขอรับบริการ',
                     style: TextStyle(
-                      color: Color.fromRGBO(12, 103, 160, 1),
+                        color: Color.fromRGBO(12, 103, 160, 1),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Kanit'),
